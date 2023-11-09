@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styles from './styles/home.module.css'
+import Upload from './components/Upload'
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
       <body className='container'>
         <div className='row'>
           <Link href="/" className={styles.title}><h1 className={styles.title}>Gallery</h1></Link>
+          <Upload />
         {children}
 
         </div>

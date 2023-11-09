@@ -4,7 +4,6 @@ import styles from '../styles/home.module.css'
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import onPostClick from '../util/onPostClickj';
 
 export default function Form(props) {
   const [title, setTitle] = useState("");
