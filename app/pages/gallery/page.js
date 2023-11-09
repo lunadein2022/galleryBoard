@@ -2,7 +2,7 @@ import Cloudinary from 'cloudinary';
 import styles from '../../styles/home.module.css';
 import View from '@/app/components/View';
 
-const Page = async () => {
+export default async function Page() {
   let response = await Cloudinary.v2.search
     .expression('resource_type:image')
     .sort_by('created_at', 'desc') // 날짜를 기준으로 내림차순 정렬
@@ -35,4 +35,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+

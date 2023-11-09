@@ -1,11 +1,27 @@
 import Button from "@/app/components/Button";
 import styles from "../../styles/home.module.css";
+import Form from "@/app/components/Form";
+import Cloudinary from 'cloudinary'
 
-export default function Page() {
-  const imageExamples = Array.from(
-    { length: 20 },
-    (_, index) => `이미지 예시 ${index + 1}`
-  );
+
+
+
+export default async function Page() {
+
+  let response = await Cloudinary.v2.search
+  .expression("resource_type:image")
+  .sort_by("created_at", "desc")
+  .max_results(100)
+  .execute();
+
+let sortedResources = response.resources.sort(
+  (a, b) => new Date(b.created_at) - new Date(a.created_at)
+);
+ let url = response.resources[0].url;
+ let date = response.resources[0].created_at;
+
+  console.log(url, date);
+
 
   return (
     <>
@@ -15,13 +31,7 @@ export default function Page() {
         </div>
         <div>
           <div className={styles.box}>
-            <form>
-              <input
-                className={styles.uploadtitle}
-                placeholder="제목을 입력하세요"
-              />
-              <button className={styles.button3}>UPLOAD</button>
-            </form>
+            <Form url={url} date={date}/>
           </div>
         </div>
       </div>

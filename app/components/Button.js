@@ -13,7 +13,7 @@ const Button = () => {
       //   let res = result;
       //   setImageId(res.info.public_id);
       // }}  
-    />
+    >사진업로드하기</CldUploadButton>
   );
 };
 
