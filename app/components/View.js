@@ -1,15 +1,18 @@
-'use client'
-import { CldImage} from 'next-cloudinary';
+"use client";
+import { CldImage } from "next-cloudinary";
 
-const View = ({src}) => {
+const View = ({ src, title }) => {
   return (
-    <CldImage
-      width="200"
-      height="200"
-      sizes ="50w"
-      src={src}
-      alt="Description of my Image"
-    />
+    <>
+      <p>{title}</p>
+      <CldImage
+        width="200"
+        height="200"
+        sizes="50w"
+        src={src}
+        alt="Description of my Image"
+      />
+    </>
   );
 };
 

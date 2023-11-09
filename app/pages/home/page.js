@@ -1,26 +1,49 @@
-import styles from "../../styles/home.module.css";
+// import { createPost } from "@/app/util/createPost";
+// import styles from "../../styles/home.module.css";
+// import {queryData} from "../../util/getQueryOutput"
 
-export default function Page() {
-  const imageExamples = Array.from({ length: 20 }, (_, index) => `이미지 예시 ${index + 1}`);
+// const Page = async ({searchParams}) =>{
+
+//   // const createPostResult = await createPost();
+//   // console.log(JSON.stringify(createPostResult, null, 2))
+
+//   return (
+//     <>
+//       <div className="container">
+//           page
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Page
+'use client'
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import View from "@/app/components/View";
+
+export default function ImageList() {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/uploads")
+      .then(response => {
+        setImages(response.data.allImage);
+      })
+      .catch(error => {
+        console.error("Failed to fetch images:", error);
+      });
+  }, []);
 
   return (
-    <>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <h3 className="gallery-title">메인 갤러리입니다</h3>
-            <div className={styles.container}>
-              <div className={styles.row}>
-                {imageExamples.map((example, index) => (
-                  <div key={index} className={styles["gallery-item"]}>
-                    {example}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+    <div>
+      {images.map((image, id) => (
+        <div key={id}>
+          <h3>{image.title}</h3>
+          <View src={image.imageUrl} title={image.title} />
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 }

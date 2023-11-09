@@ -9,31 +9,31 @@ import onPostClick from '../util/onPostClickj';
 export default function Form(props) {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
+  const [createAt, setCreateAt] = useState("");
   const router = useRouter();
 
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    const data = { title, imageUrl, createdAt }; // title, imageUrl, createAt을 객체로 묶어서 전송할 데이터 생성
-
-    try {
-
+    
     let imageUrl = props.url;
-    let createdAt = props.date;
+    let createAt = props.date;
+    const data = { title, imageUrl, createAt }; // title, imageUrl, createAt을 객체로 묶어서 전송할 데이터 생성
 
     setImageUrl(imageUrl);
-    setCreatedAt(createdAt);
+    setCreateAt(createAt);
 
-    console.log("url: ", imageUrl, "date: ", createdAt);
-    console.log(data);
-    await axios.post("/api/uploads", data)
+    console.log("url: ", imageUrl, "date: ", createAt);
+    console.log("data: ", data);
+    axios.post('/api/uploads', data)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
-} catch (error) {
-    console.error(error);
-  }
-};
-
+} 
   return (
     <>
       <form onSubmit={handleUpload}>
