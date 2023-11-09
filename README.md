@@ -38,6 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <br>
 
 ## 🙌 Next.js14로 이미지 첨부 게시판 만들기
+
+배포주소 : https://gallery-board-mpzepplaw-jennalice000s-projects.vercel.app/
+
 Next.js는 리액트 기반의 프론트엔드 프레임워크이면서 동시에 Node.js 기반의 백엔드 작업을 지원하는 풀스택 프레임워크입니다. 
 Next.js 14버전으로 이미지를 첨부하고 제목을 입력해 게시물을 업로드하면 갤러리형으로 데이터가 화면에 표시되는 게시판을 만들어봅니다.
 
@@ -89,6 +92,14 @@ api호출 관련 라이브러리는 작성하기 편하다고 생각되어 axios
 
 ![목록](https://res.cloudinary.com/dssjtmnan/image/upload/v1699571210/rgu5ku6ro8jjtlxmvn4h.png)  
 - 등록한 게시물들을 갤러리형으로 확인할 수 있습니다.
+
+## 발견한 문제
+
+- 사진업로드와 제목 폼 전송이 동시에 이뤄지는게 아니어서 원하는 사진에 제목을 넣을 수 없는 문제
+(다른 클라우드서비스를 이용하던지 multer와 같은 라이브러리 사용법을 익히는 등 시간이 필요함)
+- 게시물의 순서가 최신순이 아님
+(DB에 저장할 때 자동으로 ID가 순차적으로 생성되도록 했고 실제로 그렇게 생성되었으나 화면에 표시될 때는 순서대로 표시되지 않음 / 어느 부분에서 문제가 일어나는지 알아봐야 함)
+
 
 
 
