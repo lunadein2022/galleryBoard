@@ -3,35 +3,36 @@
 import styles from '../styles/home.module.css'
 import axios from 'axios';
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
+import onPostClick from '../util/onPostClickj';
 
 export default function Form(props) {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [createAt, setCreateAt] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+  const router = useRouter();
 
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    const data = { title, imageUrl, createAt }; // title, imageUrl, createAt을 객체로 묶어서 전송할 데이터 생성
+    const data = { title, imageUrl, createdAt }; // title, imageUrl, createAt을 객체로 묶어서 전송할 데이터 생성
 
     try {
-      const response = await axios.post("/pages/upload", data);
-      let url = response.data.url;
-      let date = response.data.date;
 
-      url = props.url;
-      date = props.date;
+    let imageUrl = props.url;
+    let createdAt = props.date;
 
-      setImageUrl(url);
-      setCreateAt(date);
+    setImageUrl(imageUrl);
+    setCreatedAt(createdAt);
 
-      console.log("url: ", url, "date: ", date);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    console.log("url: ", imageUrl, "date: ", createdAt);
+    console.log(data);
+    await axios.post("/api/uploads", data)
+
+} catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <>
